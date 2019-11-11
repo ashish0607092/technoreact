@@ -1,0 +1,14 @@
+.MuiOutlinedInput-root {
+  border-radius: 50px !important;
+}
+.MuiOutlinedInput-input {
+  padding: 10px !important;
+}
+.MuiInputLabel-formControl {
+  top: -6px !important;
+}
+.MuiButtonBase-root.Mui-disabled {
+  cursor: not-allowed !important;
+  color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.26) !important;
+}
