@@ -9,17 +9,21 @@ import Signup from "./components/signup/Signup";
 
 function App(props) {
   const [authTokens, setAuthTokens] = useState();
+  console.log("App", authTokens);
+
   const setTokens = data => {
     localStorage.setItem("tokens", JSON.stringify(data));
     setAuthTokens(data);
   };
   return (
-    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+    <AuthContext.Provider
+      value={{ authTokens: authTokens, setAuthTokens: setTokens }}
+    >
       <Router>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <PrivateRoute exact path="/admin" component={Admin} />
+        <PrivateRoute exact path="/" component={Home} />
+        <Route  path="/login" component={Login} />
+        <Route  path="/signup" component={Signup} />
+        <PrivateRoute  path="/admin" component={Admin} />
       </Router>
     </AuthContext.Provider>
   );
