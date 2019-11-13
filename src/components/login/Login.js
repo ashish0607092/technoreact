@@ -1,11 +1,21 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { Card, Form, MatTextField, Error } from "../form/AuthForm";
-import { MatButton } from "../../common/components/Button";
+import { Redirect } from "react-router-dom";
+import {
+  LoginCard,
+  Form,
+  MatTextField,
+  Error,
+  Text,
+  LoginDiv,
+  LoginBtn,
+  BottomSection,
+  ClickableLink
+} from "../form/AuthForm";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "../../App.scss";
 import { useAuth } from "../../context/auth";
+import Header from "../header/Header";
 
 const Login = props => {
   let { authTokens, setAuthTokens } = useAuth();
@@ -65,51 +75,66 @@ const Login = props => {
         } = props;
 
         return (
-          <Card>
-            <Form onSubmit={handleSubmit}>
-              <MatTextField
-                variant="outlined"
-                margin="normal"
-                required
-                id="email"
-                label="Email Address"
-                name="email"
-                value={values.email}
-                placeholder="Email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={errors.email && touched.email && "error"}
-                helperText={errors.email}
-                error={errors.email && touched.email}
-              />
-              <MatTextField
-                variant="outlined"
-                margin="normal"
-                required
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                placeholder="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={errors.password && touched.password && "error"}
-                helperText={errors.password}
-                error={errors.password && touched.password}
-              />
-              {values.isError ? <Error>Invalid Credentials</Error> : null}
-              <MatButton
-                type="submit"
-                disabled={isSubmitting || !(values.email && values.password)}
-              >
-                Sign In
-              </MatButton>
-            </Form>
-            <br />
-            <Link to="/signup">Don't have an account?</Link>
-          </Card>
+          <div>
+            <Header />
+            <LoginCard>
+              <LoginDiv>
+                <Text>Login</Text>
+                <Form onSubmit={handleSubmit}>
+                  <MatTextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    value={values.email}
+                    placeholder="Email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={errors.email && touched.email && "error"}
+                    helperText={errors.email}
+                    error={errors.email && touched.email}
+                  />
+                  <MatTextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    placeholder="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={errors.password && touched.password && "error"}
+                    helperText={errors.password}
+                    error={errors.password && touched.password}
+                  />
+                  {values.isError ? <Error>Invalid Credentials</Error> : null}
+                </Form>
+                <BottomSection>
+                  <LoginBtn
+                    type="submit"
+                    disabled={
+                      isSubmitting || !(values.email && values.password)
+                    }
+                  >
+                    Sign In
+                  </LoginBtn>
+                  <ClickableLink>Forgot Password?</ClickableLink>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ipsa maxime temporibus labore fuga iusto debitis iste,
+                    perferendis error minus sit enim maiores nihil possimus,
+                    soluta dignissimos aspernatur magnam eius nobis.
+                  </p>
+                </BottomSection>
+              </LoginDiv>
+            </LoginCard>
+          </div>
         );
       }}
     </Formik>
