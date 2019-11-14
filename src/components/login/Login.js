@@ -9,7 +9,8 @@ import {
   LoginDiv,
   LoginBtn,
   BottomSection,
-  ClickableLink
+  ClickableLink,
+  TC
 } from "../form/AuthForm";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -114,24 +115,24 @@ const Login = props => {
                     error={errors.password && touched.password}
                   />
                   {values.isError ? <Error>Invalid Credentials</Error> : null}
+                  <BottomSection>
+                    <LoginBtn
+                      type="submit"
+                      disabled={
+                        isSubmitting || !(values.email && values.password)
+                      }
+                    >
+                      Sign In
+                    </LoginBtn>
+                    <ClickableLink>Forgot Password?</ClickableLink>
+                    <TC>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Ipsa maxime temporibus labore fuga iusto debitis iste,
+                      perferendis error minus sit enim maiores nihil possimus,
+                      soluta dignissimos aspernatur magnam eius nobis.
+                    </TC>
+                  </BottomSection>
                 </Form>
-                <BottomSection>
-                  <LoginBtn
-                    type="submit"
-                    disabled={
-                      isSubmitting || !(values.email && values.password)
-                    }
-                  >
-                    Sign In
-                  </LoginBtn>
-                  <ClickableLink>Forgot Password?</ClickableLink>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsa maxime temporibus labore fuga iusto debitis iste,
-                    perferendis error minus sit enim maiores nihil possimus,
-                    soluta dignissimos aspernatur magnam eius nobis.
-                  </p>
-                </BottomSection>
               </LoginDiv>
             </LoginCard>
           </div>

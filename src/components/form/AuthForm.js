@@ -54,6 +54,12 @@ const ClickableLink = styled.a`
   font-weight: 500;
   line-height: 18px;
 `;
+const TC = styled.p`
+  color: #0155ff;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 46px;
+`;
 
 export {
   Form,
@@ -64,5 +70,6 @@ export {
   LoginDiv,
   LoginBtn,
   BottomSection,
-  ClickableLink
+  ClickableLink,
+  TC
 };
