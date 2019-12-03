@@ -6,11 +6,11 @@ import Home from "./components/home/Home";
 import Admin from "./components/admin/Admin";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
-
+import { useSelector } from 'react-redux';
 function App(props) {
   const [authTokens, setAuthTokens] = useState();
-  console.log("App", authTokens);
-
+  const loggedIn = useSelector(state => { return state.isLoggedIn })
+  console.log(loggedIn);
   const setTokens = data => {
     localStorage.setItem("tokens", JSON.stringify(data));
     setAuthTokens(data);
@@ -21,9 +21,9 @@ function App(props) {
     >
       <Router>
         <PrivateRoute exact path="/" component={Home} />
-        <Route  path="/login" component={Login} />
-        <Route  path="/signup" component={Signup} />
-        <PrivateRoute  path="/admin" component={Admin} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <PrivateRoute path="/admin" component={Admin} />
       </Router>
     </AuthContext.Provider>
   );
